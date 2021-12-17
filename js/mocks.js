@@ -14,21 +14,27 @@ const createMock = function (i) {
     mock.offer = {
         title: getRandomFromArray(TITLES),
         address: `${mock.location.x}, ${mock.location.y}`,
-        price: getRandom(100000) + `$`,
+        price: getRandom(100000),
         type: getRandomFromArray(TYPES),
         rooms: getRandomFromArray(ROOMS),
         guests: getRandomFromArray(GUESTS),
         checkin: getRandomFromArray(TIME_VALUES),
         checkout: getRandomFromArray(TIME_VALUES),
-        features: getFewRandomFromArray(FEATURES),
+        features: [],
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt quae blanditiis dolor voluptatum? Rem, dolore cumque! Illum fugit asperiores voluptatem ex, enim optio recusandae soluta vel quibusdam maiores sed quos.'
     }
-    mock.author = {
-        avatar: `img/avatars/user0${i + 1}.png`,
-    }
-    // console.log(mock)
-    return mock
 
+    mock.author = {
+        avatar: `img/avatars/user0${i + 1}.png`
+    }
+
+    for (const el of FEATURES) {
+        if (getRandom(10) > 5) {
+            mock.offer.features.push(el)
+        }
+    }
+
+    return mock
 }
 
 export const getMocks = function (count = 8) {

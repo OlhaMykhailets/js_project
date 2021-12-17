@@ -1,4 +1,4 @@
-const createCard = function (mock) {
+const createCard = function (it) {
     const cardTemplate = document.querySelector('#card').content
     const cardElement = cardTemplate.querySelector('article')
 
@@ -12,7 +12,6 @@ const createCard = function (mock) {
     const cardCapacity = card.querySelector('.popup__text--capacity')
     const cardTime = card.querySelector('.popup__text--time')
     const featuresContainer = card.querySelector('.popup__features')
-    const cardFeature = card.querySelector('.popup__feature')
     const cardDescription = card.querySelector('.popup__description')
 
 
@@ -21,45 +20,43 @@ const createCard = function (mock) {
     })
 
 
-    cardImg.src = mock.author.avatar
-    cardTitle.textContent = mock.offer.title
-    cardAddress.textContent = mock.offer.address
-    cardPrice.textContent = mock.offer.price
-    cardType.textContent = mock.offer.type
-    cardCapacity.textContent = `${mock.offer.rooms} rooms for ${mock.offer.guests}`
-    cardTime.textContent = `checkin at ${mock.offer.checkin}, checkout at ${mock.offer.checkout}`
-    cardDescription.textContent = mock.offer.description
+    cardImg.src = it.author.avatar
+    cardTitle.textContent = it.offer.title
+    cardAddress.textContent = it.offer.address
+    cardPrice.textContent = it.offer.price
+    cardType.textContent = it.offer.type
+    cardCapacity.textContent = `${it.offer.rooms} rooms for ${it.offer.guests}`
+    cardTime.textContent = `checkin at ${it.offer.checkin}, checkout at ${it.offer.checkout}`
+    cardDescription.textContent = it.offer.description
 
-    featuresContainer.textContent = ''
-        mock.offer.features.forEach(function (feature) {
-            const tempFeature = cardFeature.cloneNode()
-            featuresContainer.insertAdjacentElement('beforeend', tempFeature)
+    featuresContainer.innerHTML = ''
+        it.offer.features.forEach(function (feature) {
+            const li = `<li class = "popup__feature popup__feature--${feature}"></li>`
+            featuresContainer.insertAdjacentHTML('beforeend', li)
             // return featuresContainer
         })
 
-    // console.log(card);
-    return card
-
+        return card
 }
 
-export const setPins = function (mocks) {
+export const setPins = function (data) {
     const pinTemplate = document.querySelector('#pin').content
     const pinElement = pinTemplate.querySelector('button')
     const pinsContainer = document.querySelector('.map__pins')
     const cardContainer = document.querySelector('.map')
 
-    mocks.forEach(function (mock) {
+    data.forEach(function (it) {
 
         const pin = pinElement.cloneNode(true)
         const image = pin.querySelector('img')
 
-        pin.style = `left: ${mock.location.x}px; top: ${mock.location.y}px;`
-        image.src = mock.author.avatar
+        pin.style = `left: ${it.location.x}px; top: ${it.location.y}px;`
+        image.src = it.author.avatar
 
 
-        const card = createCard(mock)
+        const card = createCard(it)
 
-        pin.addEventListener('click', function(){
+        pin.addEventListener('click', function () {
             cardContainer.querySelectorAll('.map__card').forEach((it) => it.remove())
             cardContainer.insertAdjacentElement('beforeend', card)
         })
