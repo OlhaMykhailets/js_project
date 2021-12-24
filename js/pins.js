@@ -1,4 +1,5 @@
 const createCard = function (it) {
+    console.log(it)
     const cardTemplate = document.querySelector('#card').content
     const cardElement = cardTemplate.querySelector('article')
 
@@ -11,8 +12,8 @@ const createCard = function (it) {
     const cardType = card.querySelector('.popup__type')
     const cardCapacity = card.querySelector('.popup__text--capacity')
     const cardTime = card.querySelector('.popup__text--time')
-    const featuresContainer = card.querySelector('.popup__features')
     const cardDescription = card.querySelector('.popup__description')
+    const featuresContainer = card.querySelector('.popup__features')
 
 
     closeButton.addEventListener('click', function(){
@@ -30,13 +31,13 @@ const createCard = function (it) {
     cardDescription.textContent = it.offer.description
 
     featuresContainer.innerHTML = ''
-        it.offer.features.forEach(function (feature) {
-            const li = `<li class = "popup__feature popup__feature--${feature}"></li>`
-            featuresContainer.insertAdjacentHTML('beforeend', li)
-            // return featuresContainer
-        })
 
-        return card
+    it.offer.features.forEach(function (feature) {
+        const li = `<li class = "popup__feature popup__feature--${feature}"></li>`
+        featuresContainer.insertAdjacentHTML('beforeend', li)
+    })
+
+    return card
 }
 
 export const setPins = function (data) {

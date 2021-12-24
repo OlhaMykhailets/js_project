@@ -4,13 +4,13 @@ export const getRandom = function (max = 10, min = 0) {
 }
 
 export const getRandomFromArray = function (arr) {
-    const index = getRandom(arr.length)
+    const index = getRandom(arr.length - 1)
     return arr[index]
 }
 
 export const getFewRandomFromArray = function (arr) {
     let newArr = [];
-    for (let i = 0; i < getRandom(arr.length); i++) {
+    for (let i = 0; i < getRandom(arr.length - 1); i++) {
         newArr.push(getRandomFromArray(arr))
     }
     return newArr

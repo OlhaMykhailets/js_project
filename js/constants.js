@@ -6,9 +6,9 @@ export const MIN_COORD = 130
 
 export const TYPES = ['palace', 'flat', 'house', 'bungalo']
 
-export const ROOMS = ['one', 'two', 'three']
+export const ROOMS = ['1', '2', '3']
 
-export const GUESTS = ['one guest', 'two guests', 'three guests', 'four guests', 'five guests', 'is not for the guests']
+export const GUESTS = ['1', '2', '0']
 
 export const TIME_VALUES = ['12:00', '13:00', '14:00']
 
