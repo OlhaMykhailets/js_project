@@ -27,20 +27,20 @@ const filterDataByConfig = function (data, config) {
             filteredData = filteredData.filter(function (it) {
                 return it.offer.price > 10000 && it.offer.price < 50000
             })
-        }      
+        }
     }
 
 
     if (config.rooms !== ANY) {
         filteredData = filteredData.filter(function (it) {
-            return it.offer.rooms === config.rooms
+            return it.offer.rooms === Number(config.rooms)
         })
     }
 
 
     if (config.guests !== ANY) {
         filteredData = filteredData.filter(function (it) {
-            return it.offer.guests === config.guests
+            return it.offer.guests === Number(config.guests)
         })
     }
 
@@ -60,7 +60,7 @@ const filterDataByConfig = function (data, config) {
             })
         })
     }
-    
+
     if (config.parking) {
         filteredData = filteredData.filter(function (it) {
             return it.offer.features.some(function (feature) {
